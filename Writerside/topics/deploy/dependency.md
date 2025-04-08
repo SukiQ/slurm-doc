@@ -51,7 +51,7 @@ sudo chmod -R 755 /usr/local/munge/run
 sudo su - munge
 #  主节点执行如下命令生成，被管节点复制生成的文件 /usr/local/munge/etc/munge/munge.key 到从节点同样目录下
 /usr/local/munge/sbin/mungekey   
-chmod 600 /usr/local/munge/etc/munge/munge.key   
+chmod 600 /usr/local/munge/etc/munge/munge.key 
 ```
 
 - 部署启动脚本
