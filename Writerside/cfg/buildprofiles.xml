@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE buildprofiles SYSTEM "https://resources.jetbrains.com/writerside/1.0/build-profiles.dtd">
+<buildprofiles xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/build-profiles.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <variables>
+        <primary-color>#1baee9</primary-color>
+        <header-logo>logo.png</header-logo>
+        <custom-favicons>favicon.ico</custom-favicons>
+    </variables>
+
+    <build-profile instance="slurm">
+        <variables>
+            <code-soft-wrap>true</code-soft-wrap>
+            <noindex-content>false</noindex-content>
+            <color-preset>soft</color-preset>
+            <contribute-url>https://github.com/SukiQ/slurm-doc</contribute-url>
+            <content-max-width>1400</content-max-width>
+            <link-color>#1baee9</link-color>
+        </variables>
+    </build-profile>
+
+</buildprofiles>

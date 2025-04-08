@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="slurm"
+                  name="slurm"
+                  start-page="main.topic">
+    <toc-element topic="main.topic"/>
+    <toc-element topic="deploy.md">
+        <toc-element topic="dependency.md"/>
+    </toc-element>
+</instance-profile>

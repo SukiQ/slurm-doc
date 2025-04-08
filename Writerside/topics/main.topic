@@ -1,0 +1,29 @@
+<topic xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       title="主页" id="main">
+
+    <section-starting-page>
+        <title>Slurm</title>
+        <description>Slurm 技术指导文档</description>
+        <spotlight>
+            <a href="deploy.md"
+               summary="Slurm安装的详细步骤" type="library"/>
+<!--            <a href="overview.md"-->
+<!--               summary="介绍NeuVector发展过程，功能，架构等" type="learn"/>-->
+        </spotlight>
+
+<!--        <misc>-->
+<!--            <cards>-->
+<!--                <title>使用</title>-->
+<!--                <a href="deploy.md"-->
+<!--                   summary="NeuVector部署指南" type="tools"/>-->
+<!--                <a href="navigation.md"-->
+<!--                   summary="NeuVector界面的浏览与导航" type="branch"/>-->
+<!--                <a href="policy.md"-->
+<!--                   summary="描述NeuVector的安全策略及配置方式" type="experiment"/>-->
+<!--                <a href="api.md"-->
+<!--                   summary="NeuVector提供的Rest Api接口" type="development"/>-->
+<!--            </cards>-->
+<!--        </misc>-->
+    </section-starting-page>
+</topic>
