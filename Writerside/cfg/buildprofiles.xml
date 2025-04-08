@@ -11,7 +11,6 @@
 
     <build-profile instance="slurm">
         <variables>
-            <code-soft-wrap>true</code-soft-wrap>
             <noindex-content>false</noindex-content>
             <color-preset>soft</color-preset>
             <contribute-url>https://github.com/SukiQ/slurm-doc</contribute-url>
