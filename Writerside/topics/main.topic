@@ -8,8 +8,8 @@
         <spotlight>
             <a href="deploy.md"
                summary="Slurm安装的详细步骤" type="library"/>
-<!--            <a href="overview.md"-->
-<!--               summary="介绍NeuVector发展过程，功能，架构等" type="learn"/>-->
+            <a href="overview.md"
+               summary="介绍Slurm功能，架构，组件等" type="branch"/>
         </spotlight>
 
 <!--        <misc>-->
