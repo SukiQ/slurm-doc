@@ -20,5 +20,6 @@
     <toc-element topic="function.md">
         <toc-element topic="affinity.md"/>
         <toc-element topic="resource-binding.md"/>
+        <toc-element topic="share-resources.md"/>
     </toc-element>
 </instance-profile>
