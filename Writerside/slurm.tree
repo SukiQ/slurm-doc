@@ -22,4 +22,8 @@
         <toc-element topic="resource-binding.md"/>
         <toc-element topic="share-resources.md"/>
     </toc-element>
+    <toc-element topic="api.md">
+        <toc-element topic="api-get-job.md"/>
+        <toc-element topic="api-submit-job.md"/>
+    </toc-element>
 </instance-profile>

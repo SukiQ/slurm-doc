@@ -1,0 +1,859 @@
+openapi: "3.0.1"
+info:
+  title: "API Documentation"
+  version: "1.0"
+paths:
+  /slurmdb/{version}/jobs:
+    get:
+      summary: "全作业查询接口"
+      parameters:
+      - name: "version"
+        in: "path"
+        description: "Slurm版本号"
+        required: true
+        schema:
+          type: "string"
+      - name: "X-SLURM-USER-TOKEN"
+        in: "header"
+        description: "鉴权"
+        required: true
+        schema:
+          type: "string"
+      - name: "job_name"
+        in: "query"
+        description: "作业名称列表"
+        required: false
+        schema:
+          type: "string"
+          nullable: false
+      - name: "start_time"
+        in: "query"
+        description: "开始时间"
+        required: false
+        schema:
+          type: "string"
+          nullable: false
+      - name: "end_time"
+        in: "query"
+        description: "结束时间"
+        required: false
+        schema:
+          type: "string"
+          nullable: false
+      - name: "account"
+        in: "query"
+        description: "账号列表"
+        required: false
+        schema:
+          type: "string"
+          nullable: false
+      - name: "association"
+        in: "query"
+        description: "关联列表"
+        required: false
+        schema:
+          type: "string"
+          nullable: false
+      - name: "format"
+        in: "query"
+        description: "格式列表"
+        required: false
+        schema:
+          type: "string"
+          nullable: false
+      - name: "state"
+        in: "query"
+        description: "状态列表\n只能显示当前正在运行的作业"
+        required: false
+        schema:
+          type: "string"
+          nullable: false
+      - name: "node"
+        in: "query"
+        description: "作业运行的节点范围"
+        required: false
+        schema:
+          type: "string"
+          nullable: false
+      - name: "users"
+        in: "query"
+        description: "用户名列表"
+        required: false
+        schema:
+          type: "string"
+          nullable: false
+      - name: "partitionName"
+        in: "query"
+        description: "分区名称"
+        required: false
+        schema:
+          type: "string"
+          nullable: false
+      responses:
+        "200":
+          description: "作业相关信息对象"
+          content:
+            application/json:
+              schema:
+                required:
+                - "jobs"
+                type: "object"
+                properties:
+                  meta:
+                    type: "object"
+                    properties:
+                      slurm:
+                        type: "object"
+                        properties:
+                          cluster:
+                            type: "string"
+                            description: "集群名称"
+                          release:
+                            type: "string"
+                            description: "版本发布信息"
+                          version:
+                            type: "object"
+                            properties:
+                              major:
+                                type: "string"
+                                description: "主版本号"
+                              minor:
+                                type: "string"
+                                description: "次版本号"
+                              micro:
+                                type: "string"
+                                description: "修订版本号"
+                            description: "版本信息"
+                        description: "Slurm相关信息"
+                      plugin:
+                        type: "object"
+                        properties:
+                          accounting_storage:
+                            type: "string"
+                            description: "会计存储"
+                          data_parser:
+                            type: "string"
+                            description: "数据解析器"
+                          name:
+                            type: "string"
+                            description: "插件名称"
+                          type:
+                            type: "string"
+                            description: "插件类型"
+                        description: "插件信息"
+                      client:
+                        type: "object"
+                        properties:
+                          source:
+                            type: "string"
+                            description: "来源"
+                          user:
+                            type: "string"
+                            description: "用户"
+                          group:
+                            type: "string"
+                            description: "用户组"
+                        description: "客户端信息"
+                      command:
+                        type: "array"
+                        description: "命令列表"
+                        items:
+                          type: "string"
+                    description: "元信息"
+                  errors:
+                    type: "array"
+                    description: "错误信息"
+                    items:
+                      type: "object"
+                      properties:
+                        error_number:
+                          type: "integer"
+                          description: "错误编号"
+                        description:
+                          type: "string"
+                          description: "错误描述"
+                        source:
+                          type: "string"
+                          description: "错误来源"
+                        error:
+                          type: "string"
+                          description: "错误信息"
+                      description: "Slurm作业响应错误对象"
+                  warnings:
+                    type: "array"
+                    description: "警告信息"
+                    items:
+                      type: "object"
+                      properties:
+                        description:
+                          type: "string"
+                          description: "警告描述"
+                        source:
+                          type: "string"
+                          description: "警告来源"
+                      description: "作业响应警告对象"
+                  jobs:
+                    type: "array"
+                    description: "作业列表"
+                    items:
+                      type: "object"
+                      properties:
+                        failed_node:
+                          type: "string"
+                          description: "失败的节点"
+                        job_id:
+                          type: "integer"
+                          description: "作业ID"
+                        working_directory:
+                          type: "string"
+                          description: "工作目录"
+                        account:
+                          type: "string"
+                          description: "作业账户名称"
+                        cluster:
+                          type: "string"
+                          description: "集群名称"
+                        constraints:
+                          type: "string"
+                          description: "作业约束条件"
+                        container:
+                          type: "string"
+                          description: "容器名称"
+                        time:
+                          type: "object"
+                          properties:
+                            elapsed:
+                              type: "integer"
+                              description: "已用时间（秒）"
+                              format: "int64"
+                            end:
+                              type: "integer"
+                              description: "作业结束时间"
+                              format: "int64"
+                            start:
+                              type: "integer"
+                              description: "作业开始时间"
+                              format: "int64"
+                            submission:
+                              type: "integer"
+                              description: "作业提交时间"
+                              format: "int64"
+                            total:
+                              type: "object"
+                              properties:
+                                seconds:
+                                  type: "integer"
+                                  description: "秒"
+                                  format: "int64"
+                                microseconds:
+                                  type: "integer"
+                                  description: "微秒"
+                                  format: "int64"
+                              description: "总时间"
+                            user:
+                              type: "object"
+                              properties:
+                                seconds:
+                                  type: "integer"
+                                  description: "秒"
+                                  format: "int64"
+                                microseconds:
+                                  type: "integer"
+                                  description: "微秒"
+                                  format: "int64"
+                              description: "用户时间"
+                          description: "时间信息"
+                        group:
+                          type: "string"
+                          description: "组名称"
+                        name:
+                          type: "string"
+                          description: "作业名称"
+                        nodes:
+                          type: "string"
+                          description: "分配的节点"
+                        partition:
+                          type: "string"
+                          description: "作业分区"
+                        priority:
+                          type: "object"
+                          properties:
+                            set:
+                              type: "boolean"
+                              description: "是否设置参数值"
+                            infinite:
+                              type: "boolean"
+                              description: "是否为无穷"
+                            number:
+                              type: "integer"
+                              description: "参数值"
+                          description: "作业优先级"
+                        qos:
+                          type: "string"
+                          description: "作业质量"
+                        required:
+                          type: "object"
+                          properties:
+                            CPUs:
+                              type: "integer"
+                              description: "使用的CPU核心数"
+                            memory_per_cpu:
+                              type: "object"
+                              properties:
+                                set:
+                                  type: "boolean"
+                                  description: "是否设置参数值"
+                                infinite:
+                                  type: "boolean"
+                                  description: "是否为无穷"
+                                number:
+                                  type: "integer"
+                                  description: "参数值"
+                                  format: "int64"
+                              description: "每个节点所需的CPU"
+                            memory_per_node:
+                              type: "object"
+                              properties:
+                                set:
+                                  type: "boolean"
+                                  description: "是否设置参数值"
+                                infinite:
+                                  type: "boolean"
+                                  description: "是否为无穷"
+                                number:
+                                  type: "integer"
+                                  description: "参数值"
+                                  format: "int64"
+                              description: "每个节点所需的内存"
+                          description: "必要信息"
+                        state:
+                          type: "object"
+                          properties:
+                            current:
+                              type: "array"
+                              description: "当前状态列表"
+                              items:
+                                type: "string"
+                                description: "{BOOT_FAIL=作业由于启动失败而终止，通常是由于硬件故障（例如，\
+                                  无法启动节点或块且无法重新排队作业）, CANCELLED=作业被用户或系统管理员显式取消。作业\
+                                  可能已启动也可能未启动, COMPLETED=作业在所有节点上终止，且所有进程的退出代码为零,\
+                                  \ DEADLINE=作业因达到截止日期而终止, FAILED=作业因非零退出代码或其他失败条件\
+                                  而终止, NODE_FAIL=作业因一个或多个分配节点的失败而终止, OUT_OF_MEMORY=作\
+                                  业发生了内存不足错误, PENDING=作业正在等待资源分配, PREEMPTED=作业因抢占而\
+                                  终止, RUNNING=作业当前拥有分配, REQUEUED=作业已被重新排队, RESIZING=作\
+                                  业即将更改大小, REVOKED=由于其他集群启动了作业，集群中的兄弟节点被移除, SUSPENDED=作\
+                                  业已拥有分配，但执行已暂停，CPU已释放给其他作业, TIMEOUT=作业因达到时间限制而终止}"
+                                enum:
+                                - "BOOT_FAIL"
+                                - "CANCELLED"
+                                - "COMPLETED"
+                                - "DEADLINE"
+                                - "FAILED"
+                                - "NODE_FAIL"
+                                - "OUT_OF_MEMORY"
+                                - "PENDING"
+                                - "PREEMPTED"
+                                - "RUNNING"
+                                - "REQUEUED"
+                                - "RESIZING"
+                                - "REVOKED"
+                                - "SUSPENDED"
+                                - "TIMEOUT"
+                            reason:
+                              type: "string"
+                              description: "状态原因"
+                          description: "作业状态信息"
+                        user:
+                          type: "string"
+                          description: "用户名"
+                        stdout:
+                          type: "string"
+                          description: "标准输出路径"
+                        stderr:
+                          type: "string"
+                          description: "错误输出路径"
+                      description: "com.zznode.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job"
+                description: "作业相关信息对象"
+components:
+  schemas:
+    com.zznode.hcpsp.api.feign.slurm.entity.SlurmMeta.Slurm.Version:
+      type: "object"
+      properties:
+        major:
+          type: "string"
+          description: "主版本号"
+        minor:
+          type: "string"
+          description: "次版本号"
+        micro:
+          type: "string"
+          description: "修订版本号"
+      description: "版本信息"
+    com.zznode.hcpsp.api.feign.slurm.entity.SlurmMeta.Slurm:
+      type: "object"
+      properties:
+        cluster:
+          type: "string"
+          description: "集群名称"
+        release:
+          type: "string"
+          description: "版本发布信息"
+        version:
+          type: "object"
+          properties:
+            major:
+              type: "string"
+              description: "主版本号"
+            minor:
+              type: "string"
+              description: "次版本号"
+            micro:
+              type: "string"
+              description: "修订版本号"
+          description: "版本信息"
+      description: "Slurm相关信息"
+    com.zznode.hcpsp.api.feign.slurm.entity.SlurmMeta.Plugin:
+      type: "object"
+      properties:
+        accounting_storage:
+          type: "string"
+          description: "会计存储"
+        data_parser:
+          type: "string"
+          description: "数据解析器"
+        name:
+          type: "string"
+          description: "插件名称"
+        type:
+          type: "string"
+          description: "插件类型"
+      description: "插件信息"
+    com.zznode.hcpsp.api.feign.slurm.entity.SlurmMeta.Client:
+      type: "object"
+      properties:
+        source:
+          type: "string"
+          description: "来源"
+        user:
+          type: "string"
+          description: "用户"
+        group:
+          type: "string"
+          description: "用户组"
+      description: "客户端信息"
+    Slurm作业响应元信息对象:
+      type: "object"
+      properties:
+        slurm:
+          type: "object"
+          properties:
+            cluster:
+              type: "string"
+              description: "集群名称"
+            release:
+              type: "string"
+              description: "版本发布信息"
+            version:
+              type: "object"
+              properties:
+                major:
+                  type: "string"
+                  description: "主版本号"
+                minor:
+                  type: "string"
+                  description: "次版本号"
+                micro:
+                  type: "string"
+                  description: "修订版本号"
+              description: "版本信息"
+          description: "Slurm相关信息"
+        plugin:
+          type: "object"
+          properties:
+            accounting_storage:
+              type: "string"
+              description: "会计存储"
+            data_parser:
+              type: "string"
+              description: "数据解析器"
+            name:
+              type: "string"
+              description: "插件名称"
+            type:
+              type: "string"
+              description: "插件类型"
+          description: "插件信息"
+        client:
+          type: "object"
+          properties:
+            source:
+              type: "string"
+              description: "来源"
+            user:
+              type: "string"
+              description: "用户"
+            group:
+              type: "string"
+              description: "用户组"
+          description: "客户端信息"
+        command:
+          type: "array"
+          description: "命令列表"
+          items:
+            type: "string"
+      description: "元信息"
+    Slurm作业响应错误对象:
+      type: "object"
+      properties:
+        error_number:
+          type: "integer"
+          description: "错误编号"
+        description:
+          type: "string"
+          description: "错误描述"
+        source:
+          type: "string"
+          description: "错误来源"
+        error:
+          type: "string"
+          description: "错误信息"
+      description: "Slurm作业响应错误对象"
+    作业响应警告对象:
+      type: "object"
+      properties:
+        description:
+          type: "string"
+          description: "警告描述"
+        source:
+          type: "string"
+          description: "警告来源"
+      description: "作业响应警告对象"
+    com.zznode.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job.Time.TotalTime:
+      type: "object"
+      properties:
+        seconds:
+          type: "integer"
+          description: "秒"
+          format: "int64"
+        microseconds:
+          type: "integer"
+          description: "微秒"
+          format: "int64"
+      description: "用户时间"
+    com.zznode.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job.Time:
+      type: "object"
+      properties:
+        elapsed:
+          type: "integer"
+          description: "已用时间（秒）"
+          format: "int64"
+        end:
+          type: "integer"
+          description: "作业结束时间"
+          format: "int64"
+        start:
+          type: "integer"
+          description: "作业开始时间"
+          format: "int64"
+        submission:
+          type: "integer"
+          description: "作业提交时间"
+          format: "int64"
+        total:
+          type: "object"
+          properties:
+            seconds:
+              type: "integer"
+              description: "秒"
+              format: "int64"
+            microseconds:
+              type: "integer"
+              description: "微秒"
+              format: "int64"
+          description: "总时间"
+        user:
+          type: "object"
+          properties:
+            seconds:
+              type: "integer"
+              description: "秒"
+              format: "int64"
+            microseconds:
+              type: "integer"
+              description: "微秒"
+              format: "int64"
+          description: "用户时间"
+      description: "时间信息"
+    整型类参数设置对象:
+      type: "object"
+      properties:
+        set:
+          type: "boolean"
+          description: "是否设置参数值"
+        infinite:
+          type: "boolean"
+          description: "是否为无穷"
+        number:
+          type: "integer"
+          description: "参数值"
+      description: "作业优先级"
+    长整型类参数设置对象:
+      type: "object"
+      properties:
+        set:
+          type: "boolean"
+          description: "是否设置参数值"
+        infinite:
+          type: "boolean"
+          description: "是否为无穷"
+        number:
+          type: "integer"
+          description: "参数值"
+          format: "int64"
+      description: "每个节点所需的内存"
+    com.zznode.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job.Required:
+      type: "object"
+      properties:
+        CPUs:
+          type: "integer"
+          description: "使用的CPU核心数"
+        memory_per_cpu:
+          type: "object"
+          properties:
+            set:
+              type: "boolean"
+              description: "是否设置参数值"
+            infinite:
+              type: "boolean"
+              description: "是否为无穷"
+            number:
+              type: "integer"
+              description: "参数值"
+              format: "int64"
+          description: "每个节点所需的CPU"
+        memory_per_node:
+          type: "object"
+          properties:
+            set:
+              type: "boolean"
+              description: "是否设置参数值"
+            infinite:
+              type: "boolean"
+              description: "是否为无穷"
+            number:
+              type: "integer"
+              description: "参数值"
+              format: "int64"
+          description: "每个节点所需的内存"
+      description: "必要信息"
+    com.zznode.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job.State:
+      type: "object"
+      properties:
+        current:
+          type: "array"
+          description: "当前状态列表"
+          items:
+            type: "string"
+            description: "{BOOT_FAIL=作业由于启动失败而终止，通常是由于硬件故障（例如，无法启动节点或块且无法重新排队作业）,\
+              \ CANCELLED=作业被用户或系统管理员显式取消。作业可能已启动也可能未启动, COMPLETED=作业在所有节点上终止，且所有进\
+              程的退出代码为零, DEADLINE=作业因达到截止日期而终止, FAILED=作业因非零退出代码或其他失败条件而终止, NODE_FAIL=作\
+              业因一个或多个分配节点的失败而终止, OUT_OF_MEMORY=作业发生了内存不足错误, PENDING=作业正在等待资源分配, PREEMPTED=作\
+              业因抢占而终止, RUNNING=作业当前拥有分配, REQUEUED=作业已被重新排队, RESIZING=作业即将更改大小, REVOKED=由\
+              于其他集群启动了作业，集群中的兄弟节点被移除, SUSPENDED=作业已拥有分配，但执行已暂停，CPU已释放给其他作业, TIMEOUT=作\
+              业因达到时间限制而终止}"
+            enum:
+            - "BOOT_FAIL"
+            - "CANCELLED"
+            - "COMPLETED"
+            - "DEADLINE"
+            - "FAILED"
+            - "NODE_FAIL"
+            - "OUT_OF_MEMORY"
+            - "PENDING"
+            - "PREEMPTED"
+            - "RUNNING"
+            - "REQUEUED"
+            - "RESIZING"
+            - "REVOKED"
+            - "SUSPENDED"
+            - "TIMEOUT"
+        reason:
+          type: "string"
+          description: "状态原因"
+      description: "作业状态信息"
+    com.zznode.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job:
+      type: "object"
+      properties:
+        failed_node:
+          type: "string"
+          description: "失败的节点"
+        job_id:
+          type: "integer"
+          description: "作业ID"
+        working_directory:
+          type: "string"
+          description: "工作目录"
+        account:
+          type: "string"
+          description: "作业账户名称"
+        cluster:
+          type: "string"
+          description: "集群名称"
+        constraints:
+          type: "string"
+          description: "作业约束条件"
+        container:
+          type: "string"
+          description: "容器名称"
+        time:
+          type: "object"
+          properties:
+            elapsed:
+              type: "integer"
+              description: "已用时间（秒）"
+              format: "int64"
+            end:
+              type: "integer"
+              description: "作业结束时间"
+              format: "int64"
+            start:
+              type: "integer"
+              description: "作业开始时间"
+              format: "int64"
+            submission:
+              type: "integer"
+              description: "作业提交时间"
+              format: "int64"
+            total:
+              type: "object"
+              properties:
+                seconds:
+                  type: "integer"
+                  description: "秒"
+                  format: "int64"
+                microseconds:
+                  type: "integer"
+                  description: "微秒"
+                  format: "int64"
+              description: "总时间"
+            user:
+              type: "object"
+              properties:
+                seconds:
+                  type: "integer"
+                  description: "秒"
+                  format: "int64"
+                microseconds:
+                  type: "integer"
+                  description: "微秒"
+                  format: "int64"
+              description: "用户时间"
+          description: "时间信息"
+        group:
+          type: "string"
+          description: "组名称"
+        name:
+          type: "string"
+          description: "作业名称"
+        nodes:
+          type: "string"
+          description: "分配的节点"
+        partition:
+          type: "string"
+          description: "作业分区"
+        priority:
+          type: "object"
+          properties:
+            set:
+              type: "boolean"
+              description: "是否设置参数值"
+            infinite:
+              type: "boolean"
+              description: "是否为无穷"
+            number:
+              type: "integer"
+              description: "参数值"
+          description: "作业优先级"
+        qos:
+          type: "string"
+          description: "作业质量"
+        required:
+          type: "object"
+          properties:
+            CPUs:
+              type: "integer"
+              description: "使用的CPU核心数"
+            memory_per_cpu:
+              type: "object"
+              properties:
+                set:
+                  type: "boolean"
+                  description: "是否设置参数值"
+                infinite:
+                  type: "boolean"
+                  description: "是否为无穷"
+                number:
+                  type: "integer"
+                  description: "参数值"
+                  format: "int64"
+              description: "每个节点所需的CPU"
+            memory_per_node:
+              type: "object"
+              properties:
+                set:
+                  type: "boolean"
+                  description: "是否设置参数值"
+                infinite:
+                  type: "boolean"
+                  description: "是否为无穷"
+                number:
+                  type: "integer"
+                  description: "参数值"
+                  format: "int64"
+              description: "每个节点所需的内存"
+          description: "必要信息"
+        state:
+          type: "object"
+          properties:
+            current:
+              type: "array"
+              description: "当前状态列表"
+              items:
+                type: "string"
+                description: "{BOOT_FAIL=作业由于启动失败而终止，通常是由于硬件故障（例如，无法启动节点或块且无法重新排队作\
+                  业）, CANCELLED=作业被用户或系统管理员显式取消。作业可能已启动也可能未启动, COMPLETED=作业在所有节点上终\
+                  止，且所有进程的退出代码为零, DEADLINE=作业因达到截止日期而终止, FAILED=作业因非零退出代码或其他失败条件而终\
+                  止, NODE_FAIL=作业因一个或多个分配节点的失败而终止, OUT_OF_MEMORY=作业发生了内存不足错误, PENDING=作\
+                  业正在等待资源分配, PREEMPTED=作业因抢占而终止, RUNNING=作业当前拥有分配, REQUEUED=作业已被重新\
+                  排队, RESIZING=作业即将更改大小, REVOKED=由于其他集群启动了作业，集群中的兄弟节点被移除, SUSPENDED=作\
+                  业已拥有分配，但执行已暂停，CPU已释放给其他作业, TIMEOUT=作业因达到时间限制而终止}"
+                enum:
+                - "BOOT_FAIL"
+                - "CANCELLED"
+                - "COMPLETED"
+                - "DEADLINE"
+                - "FAILED"
+                - "NODE_FAIL"
+                - "OUT_OF_MEMORY"
+                - "PENDING"
+                - "PREEMPTED"
+                - "RUNNING"
+                - "REQUEUED"
+                - "RESIZING"
+                - "REVOKED"
+                - "SUSPENDED"
+                - "TIMEOUT"
+            reason:
+              type: "string"
+              description: "状态原因"
+          description: "作业状态信息"
+        user:
+          type: "string"
+          description: "用户名"
+        stdout:
+          type: "string"
+          description: "标准输出路径"
+        stderr:
+          type: "string"
+          description: "错误输出路径"
+      description: "com.zznode.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job"
