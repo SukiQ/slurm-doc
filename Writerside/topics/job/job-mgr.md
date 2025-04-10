@@ -31,7 +31,11 @@
       <li>使用 --partition 设置作业分区，如果未指定则使用默认分区</li>
       <li>使用 --nodelist 请求固定的节点，或是 --nodes --exclude --extra-node-info 等参数动态选择节点</li>
       <li>使用 --input --output --error 控制作业输入输出错误文件</li>
-    </list> 
+    </list>
+    <p><br/></p>
+    <code-block lang="bash">
+          sbatch --partition sivi --job-name=sivi-job --mincpus=3  task.sh
+      </code-block>
   </tab>  
   <tab id="api" title="API" group-key="api">How to install on macOS.</tab> 
 </tabs>

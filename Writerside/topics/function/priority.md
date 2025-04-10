@@ -7,19 +7,18 @@
 
 
 
-## 多因子插件
+## 多因子插件 {id="multifactor-plugin"}
 
 多因子插件的影响因子如下：
 
 - **Age**：作业在队列中的等待时间，等待时间越长，权重越高
 - **Association**：关联因子，每个关联都可以分配一个优先级。数字越大，请求此关联的作业的优先级就越高
 - **Fairshare**： 分配的计算资源与消耗的计算资源的差额
-
 - **Job size**：作业大小因子，跟作业申请的节点数、CPU核数、内存大小有关
 - **Nice**：用户可以控制的优先级参数
-- **Partition**：与节点分区相关
+- **Partition**：与节点分区相关，每个节点分区都可以设置一个优先级( `PriorityJobFactor` 参数)
 - **QOS**： 与服务质量相关
-- **Site**：`job_submit` 和 `site_factor` 插件的影响因子
+- **Site**：使用`job_submit` 和 `site_factor` 插件的影响因子
 - **TRES**: 对于作业来说，每个可追踪资源都有自己的因子
 
 <note>使用Fairshare需要运行记帐数据库</note>
@@ -29,14 +28,14 @@
 	自定义权重 (site_factor) +
 	作业等待时间权重 (PriorityWeightAge * age_factor) +
 	关联权重 (PriorityWeightAssoc * assoc_factor) +
-  公平共享权重(PriorityWeightFairshare * fair-share_factor) +
+    公平共享权重(PriorityWeightFairshare * fair-share_factor) +
 	作业大小权重(PriorityWeightJobSize * job_size_factor) +
 	分区权重(PriorityWeightPartition * priority_job_factor) +
 	服务质量权重(PriorityWeightQOS * QOS_factor) +
 	资源权重(SUM(TRES_weight_cpu * TRES_factor_cpu,
 	    TRES_weight_<type> * TRES_factor_<type>,
 	    ...))
-	Nice降级 - nice_factor
+	Nice权重 - nice_factor
 ```
 
 
@@ -67,3 +66,11 @@ Fairshare因子判断基于账号的的分配计算资源与实际消耗资源�
 
   -- **Classic（老版）**：简单计算，不考虑用户所属账户结构
 
+
+
+## Nice值权重
+
+nice值决定了作业的**高尚度**（优先级），数值越高，优先级越低，让出更多资源给其他作业；数值越低，优先级越高，占用更多资源
+
+- **正值(0-2147483645)**: 对作业的优先级产生负面影响
+- **负值(-2147483645-0)**: 提高作业的优先级，只有**特权用户**才能指定负值

@@ -202,8 +202,8 @@ scontrol [选项] [子命令]
 | **PartitionName**  | 分区名称（必填）                                                                                                                                                                                |
 | PowerDownOnIdle    | 空闲节点是否立即进入省电模式                                                                                                                                                                          |
 | PreemptMode        | 作业抢占机制                                                                                                                                                                                  |
-| PriorityJobFactor  | 优先级计算因子（priority/multifactor插件使用）                                                                                                                                                       |
-| PriorityTier       | 分区优先级层级（值越高优先级越高）                                                                                                                                                                       |
+| PriorityJobFactor  | 分区优先级计算因子，（值越高优先级越高）                                                                                                                                                                    |
+| PriorityTier       | 分区调度优先级（值越高调度优先级越高）                                                                                                                                                                     |
 | QOS                | 分区QOS设置                                                                                                                                                                                 |
 | ReqResv            | 是否仅允许在预留资源中运行                                                                                                                                                                           |
 | RootOnly           | 是否仅允许root用户提交作业                                                                                                                                                                         |

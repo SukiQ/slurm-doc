@@ -10,12 +10,10 @@
 
 
 
-## 选择类型
-
 可以在配置文件（slurm.conf）指定选择类型 `SelectType`
 
 - **select/linear**：整体模式，可以控制**节点**是否共享，不支持详细资源的共享
-- **select/cons_tres**：默认配置，支持按核心、内存、GPU 等可消耗资源（TRES）精细管理，可灵活共享资源
+- **select/cons_tres**：默认配置，支持按核心、内存、GPU 等可跟踪资源（TRES）精细管理，可灵活共享资源
 
 若选择 `cons_tres` 模式，则可以通过 `SelectTypeParameters` 参数管理超额订阅的资源
 
