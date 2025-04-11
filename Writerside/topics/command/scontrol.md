@@ -76,7 +76,7 @@ scontrol [选项] [子命令]
 
 
 
-## 作业参数
+## 作业参数 {id="job-params"}
 
 - **更新**
 
@@ -119,7 +119,7 @@ scontrol [选项] [子命令]
 | OverSubscribe     | 设置作业是否允许多个作业共享<a href="share-resources.md">超额订阅</a>资源（仅待处理作业可修改）                                                                                                                                                                                      |
 | Partition         | 修改作业的分区                                                                                                                                                                                                                                               |
 | Prefer            | 设置作业偏好的节点特性                                                                                                                                                                                                                                           |
-| Priority          | 设置作业优先级）                                                                                                                                                                                                                                              |
+| Priority          | 设置作业优先级，数字越大优先级越高（0会暂停作业或阻止调度），设置值会导致<a href="priority.md#multifactor-plugin">多因子插件</a>失效                                                                                                                                                             |
 | QOS               | 设置服务质量                                                                                                                                                                                                                                                |
 | Reboot            | 设置是否强制在作业开始前重启节点                                                                                                                                                                                                                                      |
 | ReqCores          | 修改作业请求的核心数                                                                                                                                                                                                                                            |
@@ -129,7 +129,7 @@ scontrol [选项] [子命令]
 | Requeue           | 设置节点失败后是否重新排队                                                                                                                                                                                                                                         |
 | ReservationName   | 设置作业预留资源                                                                                                                                                                                                                                              |
 | ResetAccrueTime   | 重置作业累积时间为当前时间                                                                                                                                                                                                                                         |
-| SiteFactor        | 设置作业管理优先级因子                                                                                                                                                                                                                                           |
+| SiteFactor        | 设置<a href="priority.md#multifactor-plugin">多因子插件</a>自定义权重（只有特权用户可以修改）                                                                                                                                                                                 |
 | StdErr            | 设置批作业错误输出路径                                                                                                                                                                                                                                           |
 | StdIn             | 设置批作业标准输入路径                                                                                                                                                                                                                                           |
 | StdOut            | 设置批作业标准输出路径                                                                                                                                                                                                                                           |
@@ -210,3 +210,57 @@ scontrol [选项] [子命令]
 | ~~Shared~~         | 同OverSubscribe（已重命名）                                                                                                                                                                    |
 | State              | 分区状态                                                                                                                                                                                    |
 | TRESBillingWeights | 定义每种TRES类型的计费权重，用于计算作业的使用情况                                                                                                                                                             |
+
+
+
+## 节点参数 {id="node-params"}
+
+- **更新**
+
+| 参数                | 说明                                                                                                                                                                                      |
+|:------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| NodeName          | 指定要更新的节点名称，**必填项**                                                                                                                                                                      |
+| ActiveFeatures    | 设置节点当前激活的特性                                                                                                                                                                             |
+| AvailableFeatures | 设置节点可用特性                                                                                                                                                                                |
+| Comment           | 设置节点描述                                                                                                                                                                                  |
+| CpuBind           | 指定<a href="resource-binding.md">资源绑定</a>模式：<br/> -- none：不进行 CPU 绑定<br/> -- socket：绑定到 CPU 插槽<br/> -- core：绑定到物理核心<br/> -- thread：绑定到逻辑线程<br/> -- ldom：绑定倒 NUMA 域<br/> -- off：禁用之前设置的绑定 |
+| Extra             | 包含特殊字符时需用引号的任意字符串                                                                                                                                                                       |
+| Gres              | 指定通用可消耗资源                                                                                                                                                                               |
+| InstanceId        | 云实例ID（仅云环境）                                                                                                                                                                             |
+| InstanceType      | 云实例类型（仅云环境）。                                                                                                                                                                            |
+| NodeAddr          | 节点地址                                                                                                                                                                                    |
+| NodeHostname      | 节点主机名                                                                                                                                                                                   |
+| Reason            | 节点处于异常状态的原因                                                                                                                                                                             |
+| ResumeAfter       | 为 `DOWN` 或 `DRAIN` 状态的节点设置自动恢复倒计时                                                                                                                                                       |
+| State             | 节点状态                                                                                                                                                                                    |
+| Weight            | 节点权重                                                                                                                                                                                    |
+
+
+
+## 预留参数 {id="reservation-params"}
+
+- **创建**
+
+| 参数       | 说明                  |
+|:---------|:--------------------|
+| Clusters | 指定资源预留的集群名称（默认当前集群） |
+| End      | 资源预留结束时间            |
+| ID       | 资源预留ID列表            |
+| Names    | 资源预留名称列表            |
+| Nodes    | 运行资源预留的节点名称         |
+| Start    | 资源预留开始时间            |
+
+- **查看**
+
+| 参数           | 说明                 |
+|:-------------|:-------------------|
+| Associations | 允许使用资源预留的关联ID列表    |
+| Cluster      | 资源预留的集群名称          |
+| End          | 资源预留结束时间           |
+| Flags        | 资源预留标志             |
+| ID           | 资源预留ID             |
+| Name         | 资源预留名称             |
+| NodeNames    | 资源预留的节点列表          |
+| Start        | 资源预留开始时间           |
+| TRES         | 预留的可追踪资源（TRES）详情   |
+| UnusedWall   | 未被任何作业使用的累计挂钟时间（秒） |

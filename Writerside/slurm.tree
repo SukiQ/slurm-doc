@@ -18,17 +18,18 @@
     <toc-element topic="config.md">
         <toc-element topic="slurm-conf.md"/>
     </toc-element>
-    <toc-element topic="job.md">
+    <toc-element topic="mgr.md">
         <toc-element topic="partition-mgr.md"/>
         <toc-element topic="job-mgr.md"/>
     </toc-element>
-    <toc-element topic="function.md">
+    <toc-element topic="resource.md">
         <toc-element topic="affinity.md"/>
         <toc-element topic="resource-binding.md"/>
         <toc-element topic="share-resources.md"/>
-        <toc-element topic="priority.md"/>
+        <toc-element topic="reservations.md"/>
     </toc-element>
     <toc-element topic="scheduling.md">
+        <toc-element topic="priority.md"/>
         <toc-element topic="sched-conf.md"/>
         <toc-element topic="preempt.md"/>
         <toc-element topic="qos.md"/>

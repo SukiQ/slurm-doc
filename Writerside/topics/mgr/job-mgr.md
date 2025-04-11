@@ -31,38 +31,34 @@
       <li>使用 --partition 设置作业分区，如果未指定则使用默认分区</li>
       <li>使用 --nodelist 请求固定的节点，或是 --nodes --exclude --extra-node-info 等参数动态选择节点</li>
       <li>使用 --input --output --error 控制作业输入输出错误文件</li>
+      <li>使用 --account 设置作业计费的账户</li>
     </list>
     <p><br/></p>
     <code-block lang="bash">
-          sbatch --partition sivi --job-name=sivi-job --mincpus=3  task.sh
+          sbatch --partition=sivi --job-name=sivi-job --mincpus=3  task.sh
       </code-block>
   </tab>  
   <tab id="api" title="API" group-key="api">How to install on macOS.</tab> 
 </tabs>
 
 
-## 创建分区
+## 修改作业
 
-使用 `scontrol create` 命令，或者编辑 `slurm.conf` 文件创建分区，参数<a href="scontrol.md#partitions-params">详见</a>
+使用 `scontrol update` 命令，参数<a href="scontrol.md#job-params">详见</a>
 
-- PartitionName 必填
-- 使用 AllocNodes，AllowAccounts，AllowGroups，DenyAccounts，DisableRootJobs 等参数定义分区创建的权限
-- 使用 Nodes 指定分区的节点列表
-- 使用 MaxCPUsPerNode，MaxMemPerCPU，MaxMemPerNode，MaxNodes 等参数定义分区的资源
-- 使用 CpuBind 控制<a href="resource-binding.md">资源绑定</a>模式
-
-## 删除分区
-
-使用 `scontrol delete` 命令删除分区
+- JobId 必填
+- 使用 Partition 修改作业的分区
+- 使用 StdIn StdOut StdErr 控制作业输入输出错误文件
+- 使用 Priority 直接更改作业的优先级，或使用 SiteFactor Nice 通过<a href="priority.md#multifactor-plugin">多因子插件</a>改变作业多优先级
 
 ```bash
-scontrol delete PartitionName=sivi
+scontrol update JobId=160 SiteFactor=100
 ```
 
-## 修改分区
+## 删除作业
 
-使用 `scontrol update` 命令修改分区，参数<a href="scontrol.md#partitions-params">详见</a>
+使用 `scancel` 命令删除
 
 ```bash
-scontrol update PartitionName=sivi Nodes=zznode-[140-141]
+scancel 130
 ```
