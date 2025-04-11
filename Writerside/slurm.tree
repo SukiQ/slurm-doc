@@ -27,13 +27,14 @@
         <toc-element topic="resource-binding.md"/>
         <toc-element topic="share-resources.md"/>
         <toc-element topic="reservations.md"/>
+        <toc-element topic="resource-limits.md"/>
+        <toc-element topic="gres.md"/>
     </toc-element>
     <toc-element topic="scheduling.md">
         <toc-element topic="priority.md"/>
         <toc-element topic="sched-conf.md"/>
         <toc-element topic="preempt.md"/>
         <toc-element topic="qos.md"/>
-        <toc-element topic="gres.md"/>
     </toc-element>
     <toc-element topic="api.md">
         <toc-element topic="api-get-job.md"/>
