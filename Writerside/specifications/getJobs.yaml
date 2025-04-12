@@ -372,11 +372,11 @@ paths:
                         stderr:
                           type: "string"
                           description: "错误输出路径"
-                      description: "com.zznode.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job"
+                      description: "com.sivi.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job"
                 description: "作业相关信息对象"
 components:
   schemas:
-    com.zznode.hcpsp.api.feign.slurm.entity.SlurmMeta.Slurm.Version:
+    com.sivi.hcpsp.api.feign.slurm.entity.SlurmMeta.Slurm.Version:
       type: "object"
       properties:
         major:
@@ -389,7 +389,7 @@ components:
           type: "string"
           description: "修订版本号"
       description: "版本信息"
-    com.zznode.hcpsp.api.feign.slurm.entity.SlurmMeta.Slurm:
+    com.sivi.hcpsp.api.feign.slurm.entity.SlurmMeta.Slurm:
       type: "object"
       properties:
         cluster:
@@ -412,7 +412,7 @@ components:
               description: "修订版本号"
           description: "版本信息"
       description: "Slurm相关信息"
-    com.zznode.hcpsp.api.feign.slurm.entity.SlurmMeta.Plugin:
+    com.sivi.hcpsp.api.feign.slurm.entity.SlurmMeta.Plugin:
       type: "object"
       properties:
         accounting_storage:
@@ -428,7 +428,7 @@ components:
           type: "string"
           description: "插件类型"
       description: "插件信息"
-    com.zznode.hcpsp.api.feign.slurm.entity.SlurmMeta.Client:
+    com.sivi.hcpsp.api.feign.slurm.entity.SlurmMeta.Client:
       type: "object"
       properties:
         source:
@@ -528,7 +528,7 @@ components:
           type: "string"
           description: "警告来源"
       description: "作业响应警告对象"
-    com.zznode.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job.Time.TotalTime:
+    com.sivi.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job.Time.TotalTime:
       type: "object"
       properties:
         seconds:
@@ -540,7 +540,7 @@ components:
           description: "微秒"
           format: "int64"
       description: "用户时间"
-    com.zznode.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job.Time:
+    com.sivi.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job.Time:
       type: "object"
       properties:
         elapsed:
@@ -611,7 +611,7 @@ components:
           description: "参数值"
           format: "int64"
       description: "每个节点所需的内存"
-    com.zznode.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job.Required:
+    com.sivi.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job.Required:
       type: "object"
       properties:
         CPUs:
@@ -646,7 +646,7 @@ components:
               format: "int64"
           description: "每个节点所需的内存"
       description: "必要信息"
-    com.zznode.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job.State:
+    com.sivi.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job.State:
       type: "object"
       properties:
         current:
@@ -681,7 +681,7 @@ components:
           type: "string"
           description: "状态原因"
       description: "作业状态信息"
-    com.zznode.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job:
+    com.sivi.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job:
       type: "object"
       properties:
         failed_node:
@@ -856,4 +856,4 @@ components:
         stderr:
           type: "string"
           description: "错误输出路径"
-      description: "com.zznode.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job"
+      description: "com.sivi.hcpsp.api.feign.slurm.job.vo.DbGetJobsResponse.Job"

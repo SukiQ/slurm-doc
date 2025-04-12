@@ -323,7 +323,7 @@ components:
           type: "integer"
           description: "参数值"
       description: "作业的优先级"
-    com.zznode.hcpsp.api.feign.slurm.job.vo.SubmitJobRequest.Job:
+    com.sivi.hcpsp.api.feign.slurm.job.vo.SubmitJobRequest.Job:
       type: "object"
       properties:
         cpus_per_task:
@@ -462,7 +462,7 @@ components:
           items:
             type: "string"
       description: ""
-    com.zznode.hcpsp.api.feign.slurm.entity.SlurmMeta.Slurm.Version:
+    com.sivi.hcpsp.api.feign.slurm.entity.SlurmMeta.Slurm.Version:
       type: "object"
       properties:
         major:
@@ -475,7 +475,7 @@ components:
           type: "string"
           description: "修订版本号"
       description: "版本信息"
-    com.zznode.hcpsp.api.feign.slurm.entity.SlurmMeta.Slurm:
+    com.sivi.hcpsp.api.feign.slurm.entity.SlurmMeta.Slurm:
       type: "object"
       properties:
         cluster:
@@ -498,7 +498,7 @@ components:
               description: "修订版本号"
           description: "版本信息"
       description: "Slurm相关信息"
-    com.zznode.hcpsp.api.feign.slurm.entity.SlurmMeta.Plugin:
+    com.sivi.hcpsp.api.feign.slurm.entity.SlurmMeta.Plugin:
       type: "object"
       properties:
         accounting_storage:
@@ -514,7 +514,7 @@ components:
           type: "string"
           description: "插件类型"
       description: "插件信息"
-    com.zznode.hcpsp.api.feign.slurm.entity.SlurmMeta.Client:
+    com.sivi.hcpsp.api.feign.slurm.entity.SlurmMeta.Client:
       type: "object"
       properties:
         source:
@@ -614,7 +614,7 @@ components:
           type: "string"
           description: "警告来源"
       description: "作业响应警告对象"
-    com.zznode.hcpsp.api.feign.slurm.job.vo.SubmitJobResponse.Result:
+    com.sivi.hcpsp.api.feign.slurm.job.vo.SubmitJobResponse.Result:
       type: "object"
       properties:
         job_id:

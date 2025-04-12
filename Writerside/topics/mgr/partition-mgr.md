@@ -56,12 +56,12 @@ debug*       up   infinite      4   idle node[136-139]
 <tabs group="create_partition">
     <tab id="cmd" title="命令行" group-key="cmd">
         <code-block lang="bash">
-          scontrol create PartitionName=sivi Nodes=zznode-140 MaxCPUsPerNode=3
+          scontrol create PartitionName=sivi Nodes=sivi-140 MaxCPUsPerNode=3
         </code-block>
     </tab>
     <tab id="conf" title="配置" group-key="conf">
         <code-block lang="bash">
-          PartitionName=sivi MaxCPUsPerNode=3 Nodes=zznode-140 State=UP OverSubscribe=FORCE:4
+          PartitionName=sivi MaxCPUsPerNode=3 Nodes=sivi-140 State=UP OverSubscribe=FORCE:4
         </code-block>
     </tab>
 </tabs>
@@ -79,5 +79,5 @@ scontrol delete PartitionName=sivi
 使用 `scontrol update` 命令修改分区，参数<a href="scontrol.md#partitions-params">详见</a>
 
 ```bash
-scontrol update PartitionName=sivi Nodes=zznode-[140-141]
+scontrol update PartitionName=sivi Nodes=sivi-[140-141]
 ```

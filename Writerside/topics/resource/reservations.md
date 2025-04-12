@@ -24,7 +24,7 @@ scontrol create reservation  Start=08:10 END=08:20 Nodes=ALL Users=root
 scontrol show reservation 
 
 >ReservationName=root_1 StartTime=2025-04-11T08:10:00 EndTime=2025-04-11T08:20:00 Duration=00:10:00
- Nodes=k8smaster2,zznode-[140-141] NodeCnt=3 CoreCnt=48 Features=(null) PartitionName=(null)  Flags=SPEC_NODES,ALL_NODES
+ Nodes=k8smaster2,sivi-[140-141] NodeCnt=3 CoreCnt=48 Features=(null) PartitionName=(null)  Flags=SPEC_NODES,ALL_NODES
  TRES=cpu=48
  Users=root Groups=(null) Accounts=(null) Licenses=(null) State=INACTIVE BurstBuffer=(null)
  MaxStartDelay=(null)

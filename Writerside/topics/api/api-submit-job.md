@@ -25,7 +25,7 @@
         "standard_error": "/home/zuhu0402/zuhu0402/stderr_1744187887142", 
         "standard_input": "/dev/null", 
         "required_nodes": [
-            "zznode-140"
+            "sivi-140"
         ], 
         "group_id": 10144, 
         "user_id": 10154

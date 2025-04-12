@@ -123,7 +123,7 @@
       "mcs": {
         "label": ""
       },
-      "nodes": "zznode-140",
+      "nodes": "sivi-140",
       "partition": "test",
       "hold": false,
       "priority": {
@@ -205,9 +205,9 @@
           },
           "nodes": {
             "count": 1,
-            "range": "zznode-140",
+            "range": "sivi-140",
             "list": [
-              "zznode-140"
+              "sivi-140"
             ]
           },
           "tasks": {
@@ -524,7 +524,7 @@
       "mcs": {
         "label": ""
       },
-      "nodes": "zznode-140",
+      "nodes": "sivi-140",
       "partition": "test",
       "hold": false,
       "priority": {
@@ -606,9 +606,9 @@
           },
           "nodes": {
             "count": 1,
-            "range": "zznode-140",
+            "range": "sivi-140",
             "list": [
-              "zznode-140"
+              "sivi-140"
             ]
           },
           "tasks": {
