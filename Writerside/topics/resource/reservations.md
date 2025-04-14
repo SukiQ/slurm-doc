@@ -1,6 +1,6 @@
 # 资源预留
 
-Slurm 支持为特定用户或账户预留资源（如节点、CPU、许可证、突发缓冲区等），并在**指定时间段内**独占使用
+Slurm 支持为指定**用户**或指定**账户**或指定**用户+账号**预留资源（如节点、CPU、许可证、突发缓冲区等），并在**指定时间段内**独占使用
 
 <warning>仅  root 或 SlurmUser 用户可管理资源预留</warning>
 
@@ -10,8 +10,12 @@ Slurm 支持为特定用户或账户预留资源（如节点、CPU、许可证�
 
 使用 `scontrol create reservation` 创建资源预留，参数<a href="scontrol.md#reservation-params">详见</a>
 
+- ReservationName 必填
+- StartTime 必填，EndTime / Duration 必填一项
+- Accounts / Users / Groups 必填一项，可以填多表示需同时满足
+
 ```bash
-scontrol create reservation  Start=08:10 END=08:20 Nodes=ALL Users=root
+scontrol create reservation  StartTime=08:10 EndTime=08:20 Nodes=ALL Users=root
 ```
 
 

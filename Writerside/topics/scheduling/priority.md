@@ -5,7 +5,7 @@
 - **PriorityType=priority/basic** ：作业按照先进先出（FIFO）的原则进行优先级调度
 - **PriorityType=priority/multifactor** ：作业优先级由多种因子综合决定
 
-
+<img src="priority-0.png" alt="image.png" width="700"/>
 
 ## 多因子插件 {id="multifactor-plugin"}
 
