@@ -55,7 +55,7 @@ PreemptType=preempt/partition_prio
 
 
 
-## 基于服务质量（QOS）的抢占
+## 基于服务质量的抢占
 
 - 在 slurm.conf 中配置参数
 
