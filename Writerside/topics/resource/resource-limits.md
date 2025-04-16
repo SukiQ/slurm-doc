@@ -1,26 +1,24 @@
 # 资源限制
 
-Slurm 支持从多个层级设置资源限制，资源限制对象包括：
+Slurm 支持从多个层级设置资源限制，资源限制对象包括关联和 QOS（服务质量），资源限制规则按照以下顺序执行:
 
-- 用户（User）
-- 账户（Account）
-- 关联（Association）
-- 服务质量（QOS）
-- 分区（Partition）
-
-资源限制规则按照以下顺序执行:
-<code-block lang="plantuml">
-@startmindmap
-* 分区QOS限制
- * 作业QOS限制
-  * 用户关联
-   * 账户关联
-    * 集群关联
-     * 分区限制
-       @endmindmap
-</code-block>
+<img src="resource-limits-0.png" alt="image.png" width="700" />
 
 <note>如果出现限制重复，则使用第一次出现的限制</note>
+
+
+
+## 资源限制配置
+
+可以在配置文件（slurm.conf）指定资源限制策略 `AccountingStorageEnforce`
+
+- associations：要求所有作业必须指定关联（ cluster，account，user，partition ）
+- limits：启用作业关联的限制，自动启用 associations 限制
+- qos：要求所有作业必须指定有效的 QOS (服务质量)，自动启用 associations 限制
+- safe：只有满足了 TRES 限制时，作业才会启动（安全启动）自动启用 limits 限制 + qos 限制
+- wckeys：阻止用户使用无权访问的 wckey 运行作业，自动启用 associations 限制
+
+
 
 
 ## 通过关联限制
@@ -44,6 +42,19 @@ Slurm 支持从多个层级设置资源限制，资源限制对象包括：
 | MaxWallDurationPerJob | 单个作业能运行的最大挂钟时间                           |
 | MinPrioThreshold      | 保留资源所需的最低优先级                               |
 | QOS                   | 关联能运行的QOS列表                                    |
+
+
+
+- 在 slurm.conf 中配置参数
+
+```bash
+# 设置抢占类型
+AccountingStorageEnforce=preempt/partition_prio
+```
+
+- 可以修改分区参数 PreemptMode 确认抢占模式，也可以在 slurm.conf 中设置 PreemptMode
+- 通过修改分区参数 PriorityTier 确定抢占优先级
+- 修改分区配置
 
 
 

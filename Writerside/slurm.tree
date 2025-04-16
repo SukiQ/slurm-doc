@@ -14,6 +14,7 @@
     <toc-element topic="command.md">
         <toc-element topic="scontrol.md"/>
         <toc-element topic="sbatch.md"/>
+        <toc-element topic="sacctmgr.md"/>
     </toc-element>
     <toc-element topic="config.md">
         <toc-element topic="slurm-conf.md"/>
