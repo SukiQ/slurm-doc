@@ -23,40 +23,29 @@ Slurm 支持从多个层级设置资源限制，资源限制对象包括关联�
 
 ## 通过关联限制
 
-| 参数                  | 说明                                                   |
-| :-------------------- | :----------------------------------------------------- |
-| Fairshare             | 用于确定优先级的整数值                                 |
-| GrpJobs               | 关联及其子关联能运行的总作业数                         |
-| GrpJobsAccrue         | 关联及其子关联能累积年龄优先级的待处理作业数           |
-| GrpSubmitJobs         | 关联及其子关联能提交的总作业数                         |
-| GrpTRES               | 关联及其子关联能使用的可追踪资源（TRES）总量           |
-| GrpTRESMins           | 关联及其子关联可能使用的可追踪资源（TRES）分钟总数     |
+| 参数                    | 说明                            |
+|:----------------------|:------------------------------|
+| Fairshare             | 用于确定优先级的整数值                   |
+| GrpJobs               | 关联及其子关联能运行的总作业数               |
+| GrpJobsAccrue         | 关联及其子关联能累积年龄优先级的待处理作业数        |
+| GrpSubmitJobs         | 关联及其子关联能提交的总作业数               |
+| GrpTRES               | 关联及其子关联能使用的可追踪资源（TRES）总量      |
+| GrpTRESMins           | 关联及其子关联可能使用的可追踪资源（TRES）分钟总数   |
 | GrpTRESRunMins        | 关联及其子关联运行作业使用的可追踪资源（TRES）分钟总数 |
-| GrpWall               | 关联及其子关联运行作业的最大总挂钟时间                 |
-| MaxJobs               | 关联能运行的总作业数                                   |
-| MaxJobsAccrue         | 关联能累积年龄优先级的最大待处理作业数                 |
-| MaxSubmitJobs         | 关联能提交的最大作业数                                 |
-| MaxTRESMinsPerJob     | 单个作业能使用的TRES分钟数限制                         |
-| MaxTRESPerJob         | 作业能拥有的最大TRES大小                               |
-| MaxTRESPerNode        | 作业分配中每个节点能使用的最大TRES大小                 |
-| MaxWallDurationPerJob | 单个作业能运行的最大挂钟时间                           |
-| MinPrioThreshold      | 保留资源所需的最低优先级                               |
-| QOS                   | 关联能运行的QOS列表                                    |
+| GrpWall               | 关联及其子关联运行作业的最大总挂钟时间           |
+| MaxJobs               | 关联能运行的总作业数                    |
+| MaxJobsAccrue         | 关联能累积年龄优先级的最大待处理作业数           |
+| MaxSubmitJobs         | 关联能提交的最大作业数                   |
+| MaxTRESMinsPerJob     | 单个作业能使用的TRES分钟数限制             |
+| MaxTRESPerJob         | 作业能拥有的最大TRES大小                |
+| MaxTRESPerNode        | 作业分配中每个节点能使用的最大TRES大小         |
+| MaxWallDurationPerJob | 单个作业能运行的最大挂钟时间                |
+| MinPrioThreshold      | 保留资源所需的最低优先级                  |
+| QOS                   | 关联能运行的QOS列表                   |
 
 
 
-- 在 slurm.conf 中配置参数
-
-```bash
-# 设置抢占类型
-AccountingStorageEnforce=preempt/partition_prio
-```
-
-- 可以修改分区参数 PreemptMode 确认抢占模式，也可以在 slurm.conf 中设置 PreemptMode
-- 通过修改分区参数 PriorityTier 确定抢占优先级
-- 修改分区配置
-
-
+- 
 
 ## 通过服务质量限制
 
