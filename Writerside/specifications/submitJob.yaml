@@ -162,6 +162,9 @@ paths:
                       description: "作业的环境变量"
                       items:
                         type: "string"
+                    nice:
+                      type: "integer"
+                      description: "作业的高尚度"
                   description: ""
               description: "提交任务请求对象"
       responses:

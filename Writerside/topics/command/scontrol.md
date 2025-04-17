@@ -189,7 +189,7 @@ scontrol [选项] [子命令]
 | Hidden             | 是否隐藏分区及其作业                                                                                                                                                                              |
 | JobDefaults        | 作业默认值（逗号分隔的key=value列表）                                                                                                                                                                 |
 | MaxCPUsPerNode     | 每个节点可分配的最大CPU数                                                                                                                                                                          |
-| LLN                | 是否在空闲CPU最少的节点上调度作业                                                                                                                                                                      |
+| LLN                | 是否将作业调度到负载最少的节点上（基于空闲 CPU 数量）                                                                                                                                                           |
 | MaxMemPerCPU       | 每个CPU的最大内存分配（MB）                                                                                                                                                                        |
 | MaxMemPerNode      | 每个节点的最大内存分配（MB）                                                                                                                                                                         |
 | MaxNodes           | 单个作业可分配的最大节点数                                                                                                                                                                           |
