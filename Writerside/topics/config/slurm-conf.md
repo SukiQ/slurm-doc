@@ -4,7 +4,7 @@
 | 参数                          | 描述                                                         |
 | ----------------------------- | ------------------------------------------------------------ |
 | AccountingStorageBackupHost   | 记账信息存储数据库的备份主机的名称，仅在使用 SlurmDBD 的系统中使用，其他情况下将被忽略 |
-| AccountingStorageEnforce      | 作业提交限制策略：<br/>-- all: 添加除 nojobs 和 nosteps 限制外的其他所有限制<br/>-- associations: 除非系统中存在相应的关联(association)，否则不允许运行任何新作业<br/>-- limits: 通过关联中设置的资源限制来限制作业<br/>-- nojobs: Slurm不会记录任务作业或步骤<br/>-- nosteps: Slurm不会记录任务步骤<br/>-- qos: 要求所有作业必须指定有效的 QOS (服务质量)<br/>-- safe: 作业不会因限制而被终止<br/>-- wckeys: 阻止用户使用无权访问的 wckey 运行作业 |
+| AccountingStorageEnforce      | 作业提交限制策略：<br/>-- all: 添加除 nojobs 和 nosteps 限制外的其他所有限制<br/>-- associations: 要求所有作业必须指定正确的关联<br/>-- limits: 隐藏启用关联和QOS限制（不会阻止作业提交）<br/>-- nojobs: Slurm不会记录任务作业或步骤<br/>-- nosteps: Slurm不会记录任务步骤<br/>-- qos: 要求所有作业必须指定正确的 QOS (服务质量)<br/>-- safe: 作业不会因限制而被终止<br/>-- wckeys: 阻止用户使用无权访问的 wckey 运行作业 |
 | AccountingStorageExternalHost | 外部 slurmdbd 的列表，使用逗号分隔，如果未提供端口，将使用 AccountingStoragePort。这允许注册到外部 slurmdbd 的集群 |
 | AccountingStorageHost         | 记账信息存储数据库的主机名称，仅在使用 SlurmDBD 的系统中使用，其他情况下将被忽略 |
 | AccountingStorageParameters   | 记账信息存储数据库选项，使用逗号分隔                         |

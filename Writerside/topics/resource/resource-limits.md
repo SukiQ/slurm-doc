@@ -12,9 +12,9 @@ Slurm 支持从多个层级设置资源限制，资源限制对象包括关联�
 
 可以在配置文件（slurm.conf）指定资源限制策略 `AccountingStorageEnforce`
 
-- associations：要求所有作业必须指定关联（ cluster，account，user，partition ）
-- limits：启用作业关联的限制，自动启用 associations 限制
-- qos：要求所有作业必须指定有效的 QOS (服务质量)，自动启用 associations 限制
+- associations：要求所有作业必须指定正确的关联（ cluster，account，user，partition ）
+- limits：隐藏启用关联和QOS限制（不会阻止作业提交）
+- qos：要求所有作业必须指定正确的 QOS (服务质量)
 - safe：只有满足了 TRES 限制时，作业才会启动（安全启动）自动启用 limits 限制 + qos 限制
 - wckeys：阻止用户使用无权访问的 wckey 运行作业，自动启用 associations 限制
 
