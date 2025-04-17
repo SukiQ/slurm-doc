@@ -70,7 +70,3 @@ sacctmgr [选项] [子命令]
 | MaxWall/MaxWallDurationPerJob | 该关联下单作业的墙钟时间上限                                 |
 | Priority                      | 该关联下作业的额外优先级                                     |
 | QosLevel                      | 作业可用的QOS列表（支持=,+=,-=运算符）                       |
-
-
-
-## 
